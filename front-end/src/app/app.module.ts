@@ -7,12 +7,14 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { SignupPageComponent } from './signup-page/signup-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { HomePageComponent } from './home-page/home-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
-    SignupPageComponent
+    SignupPageComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
