@@ -1,10 +1,10 @@
-package com.cts.login;
+package com.cts.backend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class LoginApplicationTests {
+class BackendApplicationTests {
 
 	@Test
 	void contextLoads() {
