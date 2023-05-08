@@ -1,29 +1,33 @@
-import { Component ,OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { User } from '../user';
-import { UserloginService } from '../userlogin.service';
+import { UserserviceService } from './../userservice.service';
+import { Component ,OnInit } from '@angular/core';
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.css']
 })
-export class LoginPageComponent {
+export class LoginPageComponent implements OnInit {
 
-  user:User= new User();
-
-  public loginForm!:FormGroup;
-  constructor(private formbuilder:FormBuilder,private userservice: UserloginService,private router:Router){}
+  model:any={};
+  getData!:any;
+  constructor(private userservice:UserserviceService,private router:Router){}
 
   ngOnInit():void{  }
 
 
   logIn(){
-    console.log(this.user);
-    this.userservice.loginUser(this.user).subscribe(data=>{
-      alert("login successfully")
-    },error=>alert("sorry enter correct credentials"));
+    var email= this.model.email;
+    var password=this.model.password;
+
+    this.userservice.getUserData(email,password).subscribe((res)=>{
+      this.getData=res;
+      console.log(this.getData);
+      if(this.getData==true){
+        this.router.navigate(["/home"]);
+      }
+
+    })
+
 
   }
 
