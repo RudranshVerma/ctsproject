@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,24 +9,37 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
- username= "rudransh";
- password="hello";
- invalidmessage="Invalid Message";
- invalid=false;
+  public loginForm!: FormGroup;
+  constructor(private formbuilder: FormBuilder, private http: HttpClient, private router: Router) { }
 
- constructor(private router:Router){}
+  ngOnInit(): void {
+    this.loginForm = this.formbuilder.group({
+      email: [''],
+      password: [''],
 
- handlelogin(){
-  console.log(this.username+"  "+this.password)
-  if(this.username==="yash"&&this.password==="hello"){
-    this.invalid=false;
-    this.router.navigate(['home']);
-
+    }
+    )
   }
-  else 
-  this.invalid=true;
- }
-
+  logIn() {
+    this.http.get<any>("").subscribe( //signup array is stored in db.json 
+      res => {
+        const user = res.find((a: any) => {
+          return a.email === this.loginForm.value.email && a.password === this.loginForm.value.password //checking login and password
+        });
+        if (user) {
+          alert("Login Success");
+          this.loginForm.reset();
+          this.router.navigate(['list']);
+        }
+        else {
+          alert('User not found');
+        }
+      },
+      err => {
+        alert("something went wrong");
+      }
+    )
+  }
 
 
  

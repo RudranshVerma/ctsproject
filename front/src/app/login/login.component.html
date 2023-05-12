@@ -1,7 +1,54 @@
-<small *ngIf='invalid' >{{invalidmessage}}</small>
-
 <div>
-User Name: <input type="text" name="username" placeholder="username" [(ngModel)]="username">
-Password: <input type="password" name="password" placeholder="password" [(ngModel)]="password">
-<button (click) = "handlelogin()">Login </button>
+  <header>
+      <nav class="navbar navbar-expand navbar-dark bg-dark">
+          <div >
+              <a routerLink="/home" class="navbar-brand"><u>Animlist</u></a>
+          </div>
+              <ul class="navbar-nav list-inline">
+                  <li><a routerLink="/list" class="nav-link">List Of Anime</a></li>
+                  <li><a routerLink="/list" class="nav-link">Favorite</a></li>
+              </ul>
+  
+  
+              <ul class="navbar-nav navbar-collapse justify-content-end">
+                  <li><a routerLink="/login" class="nav-link">Login</a></li>
+                  <li><a routerLink="/login" class="nav-link">Logout</a></li>
+              </ul>
+          
+      </nav>
+  </header>
+
+<img  src="../../assets/wp6918284-one-piece-4k-wallpapers.jpg" width="100%" height="80%" >
+
+<div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="text-center">
+            <h1>Login</h1>
+            <h6>enter email and password</h6>
+          </div>
+          <form [formGroup]="loginForm" (ngSubmit)="logIn()">
+  
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Email address</label>
+              <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1"
+                aria-describedby="emailHelp">
+              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input type="password" formControlName="password" class="form-control" id="exampleInputPassword1">
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+  
+          </form>
+          <a style="color: white;margin-top:10px ;" routerLink="/signup">New User? click to signup</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
 </div>
