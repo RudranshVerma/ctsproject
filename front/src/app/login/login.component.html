@@ -8,13 +8,13 @@
                   <li><a routerLink="/list" class="nav-link">List Of Anime</a></li>
                   <li><a routerLink="/list" class="nav-link">Favorite</a></li>
               </ul>
-  
-  
+
+
               <ul class="navbar-nav navbar-collapse justify-content-end">
                   <li><a routerLink="/login" class="nav-link">Login</a></li>
                   <li><a routerLink="/login" class="nav-link">Logout</a></li>
               </ul>
-          
+
       </nav>
   </header>
 
@@ -29,7 +29,7 @@
             <h6>enter email and password</h6>
           </div>
           <form [formGroup]="loginForm" (ngSubmit)="logIn()">
-  
+
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">Email address</label>
               <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1"
@@ -40,8 +40,8 @@
               <label for="exampleInputPassword1" class="form-label">Password</label>
               <input type="password" formControlName="password" class="form-control" id="exampleInputPassword1">
             </div>
-            <button type="submit" class="btn btn-primary">Login</button>
-  
+            <button type="submit" class="btn btn-primary ">Login</button>
+
           </form>
           <a style="color: white;margin-top:10px ;" routerLink="/signup">New User? click to signup</a>
         </div>
