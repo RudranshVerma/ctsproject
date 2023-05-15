@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   public loginForm!: FormGroup;
-  truelogin:boolean=false;
   constructor(private formbuilder: FormBuilder, private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
@@ -22,7 +21,7 @@ export class LoginComponent {
     )
   }
   logIn() {
-    this.http.get<any>("").subscribe( //signup array is stored in db.json
+    this.http.get<any>("").subscribe( //signup array is stored in db.json 
       res => {
         const user = res.find((a: any) => {
           return a.email === this.loginForm.value.email && a.password === this.loginForm.value.password //checking login and password
@@ -31,7 +30,6 @@ export class LoginComponent {
           alert("Login Success");
           this.loginForm.reset();
           this.router.navigate(['list']);
-          this.truelogin=true;
         }
         else {
           alert('User not found');
@@ -44,5 +42,5 @@ export class LoginComponent {
   }
 
 
-
+ 
 }
