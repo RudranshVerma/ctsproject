@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
-const AnimeCard = (prop) => {
+const AnimeCard = ({prop}) => {
   const [isFlipped, setIsFlipped] = useState(false);
 
   const handleCardFlip = () => {
-    console.log(prop);
+    console.log({prop});
     setIsFlipped(!isFlipped);
   };
   return (
