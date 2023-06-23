@@ -3,7 +3,6 @@ package com.cts.project.entity;
 import org.hibernate.validator.constraints.Length;
 
 import jakarta.persistence.Column;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,7 +10,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,25 +26,40 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long userId;
-	
-	@Column(unique = true)
-    @Length(min = 5)
-    @NotEmpty(message = "Please Enter Username of minimum of 5 characters")
-	private String userName;
-	
-	@NotEmpty
-    @Email(message = "Please Enter a valid Email Address")
-    @Column(unique = true)
-	private String emailId;
-	
-	@NotEmpty
-    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$", message = "password must be min 8 and max 16 length containing atleast 1 uppercase, 1 lowercase, 1 special character and 1 digit ")
-    @Length(min = 8, max = 16)
 
-	private String password;
+	@Column(unique = true)
+	@Length(min = 5)
+	@NotEmpty(message = "Please Enter Username of minimum of 5 characters")
+	private String userName;
+
+	@NotEmpty
+	@Email(message = "Please Enter a valid Email Address")
+	@Column(unique = true)
+	private String emailId;
+
 	
+//	@Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$", message = "password must be min 8 and max 16 length containing atleast 1 uppercase, 1 lowercase, 1 special character and 1 digit ")
+	
+	@NotEmpty
+	private String password;
+
 	@NotEmpty(message = "UserType must be either Admin/User")
-	private String role;
+	private String role = "User";
+	
+
+	public User(Long userId,
+			@Length(min = 5) @NotEmpty(message = "Please Enter Username of minimum of 5 characters") String userName,
+			@NotEmpty @Email(message = "Please Enter a valid Email Address") String emailId,
+			@NotEmpty String password,
+			@NotEmpty(message = "UserType must be either Admin/User") String role) {
+		super();
+		this.userId = userId;
+		this.userName = userName;
+		this.emailId = emailId;
+		this.password = password;
+		this.role = role;
+
+	}
 
 	public Long getUserId() {
 		return userId;
@@ -87,5 +100,11 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
+
+	public User() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 
 }

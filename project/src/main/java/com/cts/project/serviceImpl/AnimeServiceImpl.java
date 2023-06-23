@@ -41,6 +41,9 @@ public class AnimeServiceImpl implements AnimeService {
 		if (oldAnime.getAnimeName() != anime.getAnimeName()) {
 			oldAnime.setAnimeName(anime.getAnimeName());
 		}
+		if (oldAnime.getWatched() != anime.getWatched()) {
+			oldAnime.setWatched(anime.getWatched());
+		}
 
 		return animeRepository.save(oldAnime);
 	}

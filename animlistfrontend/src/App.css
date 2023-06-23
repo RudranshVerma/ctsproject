@@ -1,14 +1,16 @@
-.App {
+/* .App {
   align-content: center;
-  height: 513px;
+  height: 100%;
+  width: 100%;
   background-image: url("https://c4.wallpaperflare.com/wallpaper/270/628/878/anime-one-piece-portgas-d-ace-wallpaper-preview.jpg");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 300px 300px;
   align-items: center;
-  
-} 
-
- 
-
-
-
+  background-attachment: fixed;
+} */
+body,
+html {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}

@@ -36,10 +36,10 @@ public class Anime {
 	private String animeStatus;
 
 	@Column
-	private String Watched;
+	private Boolean Watched=false;
 
 	@Column
-	private String Favorite;
+	private Boolean Favorite=false;
 
 	public Long getAnimeId() {
 		return animeId;
@@ -81,20 +81,21 @@ public class Anime {
 		this.animeStatus = animeStatus;
 	}
 
-	public String getWatched() {
+	public Boolean getWatched() {
 		return Watched;
 	}
 
-	public void setWatched(String watched) {
-		Watched = watched;
+	public void setWatched(Boolean watched) {
+		this.Watched = watched;
 	}
 
-	public String getFavourite() {
+	public Boolean getFavorite() {
 		return Favorite;
 	}
 
-	public void setFavourite(String favourite) {
-		Favorite = favourite;
+	public void setFavorite(Boolean favourite) {
+		this.Favorite = favourite;
 	}
+
 
 }

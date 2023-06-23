@@ -5,28 +5,28 @@ function NavBar() {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand href="#home">AnimList</Navbar.Brand>
+        <Navbar.Brand>
+          <LinkContainer to={"/login"}>
+            <Nav.Link>AnimList</Nav.Link>
+          </LinkContainer>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <LinkContainer to="/login">
-              <Nav.Link>Home</Nav.Link>
-            </LinkContainer>
             <LinkContainer to="/animes">
               <Nav.Link>Animes</Nav.Link>
             </LinkContainer>
             <LinkContainer to="/watchedAnimes">
               <Nav.Link>Watched</Nav.Link>
             </LinkContainer>
-            <LinkContainer to="/Movies">
+            <LinkContainer to="/favoriteAnimes">
               <Nav.Link>Favourite</Nav.Link>
             </LinkContainer>
           </Nav>
           <Nav>
-            <Nav.Link href="#deets">Logout</Nav.Link>
-            <Nav.Link eventKey={2} href="#memes">
-              My Profile
-            </Nav.Link>
+            <LinkContainer to="/myprofile">
+              <Nav.Link>My Profile</Nav.Link>
+            </LinkContainer>
           </Nav>
         </Navbar.Collapse>
       </Container>

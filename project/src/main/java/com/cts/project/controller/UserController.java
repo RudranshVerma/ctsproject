@@ -2,12 +2,12 @@ package com.cts.project.controller;
 
 import java.util.List;
 
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cts.project.entity.User;
-import com.cts.project.exception.UserNotCreatedException;
 import com.cts.project.exception.UserNotFoundException;
+import com.cts.project.repository.UserRepository;
+import com.cts.project.response.LoginRequest;
+import com.cts.project.response.LoginResponse;
 import com.cts.project.service.UserService;
 
 @CrossOrigin("http://localhost:3000")
@@ -31,18 +33,12 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-//	@Autowired
-//	private UserRepository userRepository;
+	@Autowired
+	private UserRepository userRepository;
 
 	@PostMapping("/createUser")
-	public User createUser(@RequestBody User user) throws UserNotCreatedException {
-		logger.info("Creating user");
-		User checkUser = userService.createUser(user);
-		if (checkUser.getUserId() <= 0) {
-			logger.error("User not created");
-			throw new UserNotCreatedException("Entered User Couldn't be Created");
-		}
-		return checkUser;
+	public ResponseEntity<User> createUser(@RequestBody User user) {
+		return ResponseEntity.ok(userService.createUser(user));
 	}
 
 	@GetMapping("/getAllUsers")
@@ -67,7 +63,7 @@ public class UserController {
 	@PutMapping("/updateUserById/{id}")
 	public User updateUserById(@RequestBody User user, @PathVariable Long id) {
 		logger.info("Updating user");
-		return userService.updateUserById(user, id);
+		return userService.updateUserById(id, user);
 	}
 
 	@DeleteMapping("/deleteUserById/{id}")
@@ -75,4 +71,11 @@ public class UserController {
 		logger.info("Deleting user");
 		userService.deleteUserById(id);
 	}
+
+	@PostMapping(path = "/login")
+	public ResponseEntity<?> login(@RequestBody LoginRequest user) {
+		LoginResponse loginResponse = userService.loginUser(user);
+		return ResponseEntity.ok(loginResponse);
+	}
+
 }

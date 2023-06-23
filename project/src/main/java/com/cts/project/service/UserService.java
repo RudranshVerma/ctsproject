@@ -3,6 +3,8 @@ package com.cts.project.service;
 import org.springframework.stereotype.Service;
 
 import com.cts.project.entity.User;
+import com.cts.project.response.LoginRequest;
+import com.cts.project.response.LoginResponse;
 
 import java.util.List;
 
@@ -16,5 +18,8 @@ public interface UserService {
 
 	void deleteUserById(Long userId);
 
-	User updateUserById(User user, Long userId);
+	User updateUserById(User user,Long userId);
+
+	LoginResponse loginUser(LoginRequest loginRequest);
+
 }
